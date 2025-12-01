@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Comentarios</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrar()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  
+  <div class="ion-padding-bottom">
+    <ion-item lines="none">
+      <ion-avatar slot="start">
+        <img [src]="post.autorFoto || 'assets/avatar-placeholder.png'">
+      </ion-avatar>
+      <ion-label class="ion-text-wrap">
+        <h2>{{ post.autorNombre }}</h2>
+        <p>{{ post.contenido }}</p>
+      </ion-label>
+    </ion-item>
+  </div>
+
+  <hr>
+
+  <ion-list>
+    <ion-item *ngFor="let c of comentarios$ | async">
+      
+      <ion-avatar slot="start" style="width: 40px; height: 40px;">
+        <img [src]="c.autorFoto || 'assets/avatar-placeholder.png'" />
+      </ion-avatar>
+
+      <ion-label class="ion-text-wrap">
+        <h3>
+          {{ c.autorNombre }} 
+          <span style="font-size: 0.7rem; color: gray; margin-left: 5px;">
+            {{ c.fecha?.toDate() | date:'shortTime' }}
+          </span>
+        </h3>
+        <p>{{ c.texto }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-item lines="none">
+      <ion-input placeholder="Escribe un comentario..." [(ngModel)]="nuevoComentario"></ion-input>
+      <ion-button slot="end" fill="clear" (click)="enviarComentario()">
+        <ion-icon name="send"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>

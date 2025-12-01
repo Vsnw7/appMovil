@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar> <ion-buttons slot="start">
+      <ion-menu-button menu="first"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Noticias</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <ion-list>
+    <ion-card *ngFor="let n of noticias" (click)="verDetalle(n)" button="true">
+      
+      <div class="img-wrapper" *ngIf="n.imagen">
+        <img [src]="n.imagen">
+      </div>
+
+      <ion-card-header>
+        <ion-card-title>{{ n.titulo }}</ion-card-title>
+        <ion-card-subtitle *ngIf="n.fecha_publicacion">
+            {{ n.fecha_publicacion.toDate() | date:'shortDate' }}
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p>{{ n.contenido | slice:0:100 }}...</p> 
+        <ion-text color="primary" style="float: right; margin-top: 10px;">
+            <strong>Leer más</strong>
+        </ion-text>
+      </ion-card-content>
+
+    </ion-card>
+  </ion-list>
+
+</ion-content>

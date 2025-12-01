@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Detalle</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrarModal()">
+        <ion-icon name="close-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  
+  <div class="imagen-container" *ngIf="noticia.imagen">
+    <img [src]="noticia.imagen" alt="Imagen Noticia">
+  </div>
+
+  <h1 class="titulo">{{ noticia.titulo }}</h1>
+  
+  <ion-note color="medium" class="fecha">
+    <ion-icon name="calendar-outline"></ion-icon>
+    {{ noticia.fecha_publicacion?.toDate() | date:'mediumDate' }}
+  </ion-note>
+
+  <div class="contenido-texto">
+    {{ noticia.contenido }}
+  </div>
+
+</ion-content>

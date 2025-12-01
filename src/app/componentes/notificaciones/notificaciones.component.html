@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-title>Actividad</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrar()">
+        <ion-icon name="close-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    
+    <ion-item *ngFor="let n of listaNotificaciones" 
+              button 
+              (click)="revisarNotificacion(n)" 
+              [color]="n.leido ? '' : 'light'"> 
+      
+      <ion-icon [name]="n.tipo === 'like' ? 'heart' : 'chatbubble'" 
+                [color]="n.tipo === 'like' ? 'danger' : 'primary'" 
+                slot="start">
+      </ion-icon>
+
+      <ion-label class="ion-text-wrap">
+        <p>{{ n.mensaje }}</p>
+        <p style="font-size: 0.75rem; color: gray;">
+          {{ n.fecha?.toDate() | date:'short' }}
+        </p>
+      </ion-label>
+
+      <ion-icon name="ellipse" color="primary" slot="end" 
+                style="font-size: 10px;" *ngIf="!n.leido">
+      </ion-icon>
+
+    </ion-item>
+
+    <div *ngIf="listaNotificaciones.length === 0" class="ion-text-center ion-padding">
+      <p style="color: #888;">No tienes notificaciones recientes.</p>
+    </div>
+
+  </ion-list>
+</ion-content>

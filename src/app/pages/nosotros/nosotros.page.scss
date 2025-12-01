@@ -1,0 +1,63 @@
+.main-title {
+  font-weight: 900;
+  font-size: 2.5rem;
+  color: var(--ion-color-tertiary);
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  color: #aaa;
+  font-size: 1.1rem;
+}
+
+.game-card {
+  margin: 20px;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+  
+  img {
+    height: 150px;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.section-title {
+  text-align: center;
+  font-weight: bold;
+  color: var(--ion-color-light);
+  margin-top: 20px;
+}
+
+.section-desc {
+  text-align: center;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.benefit-box {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  height: 100%;
+  border: 1px solid rgba(255,255,255,0.1);
+
+  ion-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+
+  h3 {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 5px 0;
+    color: white;
+  }
+
+  p {
+    font-size: 0.8rem;
+    color: #ccc;
+    margin: 0;
+  }
+}

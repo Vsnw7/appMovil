@@ -1,0 +1,81 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="light">
+    
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    
+    <ion-buttons slot="start">
+      <ion-button (click)="abrirNotificaciones()">
+        <ion-icon name="notifications-outline" style="font-size: 1.5rem;"></ion-icon>
+        
+        <ion-badge color="danger" *ngIf="countSinLeer > 0" 
+                   style="position: absolute; top: 5px; right: 0; font-size: 0.6rem; border-radius: 50%;">
+          {{ countSinLeer }}
+        </ion-badge>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>Inicio</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button routerLink="/mi-cuenta">
+        <ion-icon name="person-circle-outline" style="font-size: 1.8rem; color: #a985ff;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="inicio-page" fullscreen>
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Inicio</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div *ngIf="(hero$ | async) === null" style="text-align: center; margin-top: 50px;">
+    <ion-spinner name="crescent" color="primary"></ion-spinner>
+    <p>Cargando...</p>
+  </div>
+
+  <ng-container *ngIf="hero$ | async as heroes">
+    <div *ngIf="heroes.length === 0" style="padding: 20px; text-align: center;">
+      <p>No hay datos en la colección 'inicio-hero'</p>
+    </div>
+
+    <div class="hero-section" *ngFor="let hero of heroes">
+      <img [src]="hero.imageUrl" alt="Hero" class="hero-bg" loading="lazy" />
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content">
+        <h1>{{ hero.title }}</h1>
+        <p>{{ hero.subtitle }}</p>
+        <ion-button routerLink="/noticias" class="btn-jugar">
+          <ion-icon name="play-circle-outline" slot="start"></ion-icon>
+          {{ hero.buttonLabel }}
+        </ion-button>
+      </div>
+    </div>
+  </ng-container>
+
+<ng-container *ngIf="historia$ | async as historias">
+    <div class="historia-container">
+      
+      <div class="historia-card" *ngFor="let historia of historias">
+        
+        <div class="img-wrapper" *ngIf="historia.imageUrl">
+          <img [src]="historia.imageUrl" alt="Historia Img" loading="lazy" />
+        </div>
+
+        <div class="content-wrapper">
+          <h2>{{ historia.title }}</h2>
+          <div class="historia-texto" [innerHTML]="historia.text"></div>
+        </div>
+
+      </div>
+
+    </div>
+  </ng-container>
+
+</ion-content>

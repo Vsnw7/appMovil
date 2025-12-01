@@ -1,0 +1,68 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="first"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Comunidad</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg-light">
+
+  <div class="ion-padding-horizontal ion-margin-top">
+    <ion-searchbar 
+      placeholder="Buscar..." 
+      (ionInput)="buscarPost($event)" 
+      [debounce]="250">
+    </ion-searchbar>
+  </div>
+
+  <ion-card class="create-post-card">
+    <ion-item lines="none">
+      <ion-avatar slot="start">
+        <img [src]="currentUser?.photoURL || 'assets/avatar-placeholder.png'">
+      </ion-avatar>
+      <ion-textarea 
+        placeholder="¿Qué estás pensando?" 
+        [(ngModel)]="nuevoPost"
+        autoGrow="true"
+        rows="2">
+      </ion-textarea>
+    </ion-item>
+    <div class="actions ion-text-right ion-padding-horizontal ion-padding-bottom">
+      <ion-button size="small" shape="round" (click)="publicar()" [disabled]="!nuevoPost">
+        Publicar
+      </ion-button>
+    </div>
+  </ion-card>
+
+  <ion-card *ngFor="let post of postsFiltrados" class="post-card">
+    <ion-item lines="none">
+      <ion-avatar slot="start">
+        <img [src]="post.autorFoto || 'assets/avatar-placeholder.png'">
+      </ion-avatar>
+      <ion-label>
+        <h3>{{ post.autorNombre }}</h3>
+        <p>{{ post.fecha?.toDate() | date:'short' }}</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-card-content class="post-content">
+      {{ post.contenido }}
+    </ion-card-content>
+
+    <div class="post-stats">
+      <ion-button fill="clear" size="small" (click)="darLike(post)" 
+        [color]="post.likes.includes(currentUser?.uid) ? 'danger' : 'medium'">
+        <ion-icon [name]="post.likes.includes(currentUser?.uid) ? 'heart' : 'heart-outline'" slot="start"></ion-icon>
+        {{ post.likes.length }}
+      </ion-button>
+
+      <ion-button fill="clear" size="small" color="medium" (click)="abrirComentarios(post)">
+        <ion-icon name="chatbubble-outline" slot="start"></ion-icon>
+        {{ post.comentariosCount }}
+      </ion-button>
+    </div>
+  </ion-card>
+
+</ion-content>

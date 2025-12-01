@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Mi Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- SECCIÓN SUPERIOR: VISTA PREVIA -->
+  <div class="perfil-header ion-text-center">
+    <ion-avatar class="avatar-gigante">
+      <!-- Muestra la imagen seleccionada en tiempo real -->
+      <img [src]="avatarSeleccionado" />
+    </ion-avatar>
+    
+    <h2 *ngIf="username">{{ username }}</h2>
+    <p class="email-text">{{ user?.email }}</p>
+  </div>
+
+  <!-- SECCIÓN DE EDICIÓN -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Personalización</ion-card-subtitle>
+      <ion-card-title>Configura tu Avatar</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      
+      <!-- INPUT NOMBRE DE USUARIO -->
+      <ion-item fill="outline" class="ion-margin-bottom">
+        <ion-label position="floating">Nombre de Usuario (Nick)</ion-label>
+        
+        <ion-input [(ngModel)]="username"></ion-input>
+      </ion-item>
+
+      <!-- BUSCADOR DE AVATAR -->
+      <div class="buscador-avatar">
+        <p>¡Genera tu avatar único escribiendo algo!</p>
+        <ion-searchbar 
+          placeholder="Escribe: 'Guerrero', 'TuNombre'..." 
+          (ionInput)="buscarAvatar($event)"
+          [debounce]="500">
+        </ion-searchbar>
+      </div>
+
+      <!-- GRILLA DE OPCIONES RÁPIDAS -->
+      <p style="font-size: 0.9em; color: gray;">O elige uno de estos estilos:</p>
+      <div class="grid-avatares">
+        <div 
+          class="avatar-item" 
+          *ngFor="let img of avataresPredefinidos" 
+          (click)="seleccionarAvatar(img)"
+          [class.seleccionado]="img === avatarSeleccionado">
+          <img [src]="img" />
+        </div>
+      </div>
+
+      <!-- BOTÓN GUARDAR -->
+      <ion-button expand="block" color="secondary" class="ion-margin-top" (click)="guardarCambios()">
+        <ion-icon name="save-outline" slot="start"></ion-icon>
+        Guardar Perfil
+      </ion-button>
+
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

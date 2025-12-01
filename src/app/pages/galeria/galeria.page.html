@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary"> <ion-buttons slot="start">
+      <ion-menu-button menu="first"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Galería</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <h2 class="ion-margin-bottom">Imágenes</h2>
+
+  <ion-list>
+    <ion-item *ngFor="let img of imagenes" (click)="verImagen(img)" button="true" detail="true">
+      <ion-thumbnail slot="start">
+        <img [src]="img.url_imagen">
+      </ion-thumbnail>
+      <ion-label>
+        <h3>{{ img.titulo }}</h3>
+        <p>{{ img.descripcion }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+
+  <h2 class="ion-margin-top ion-margin-bottom">Videos</h2>
+
+  <ion-list>
+    <ion-item *ngFor="let vid of videos" (click)="verVideo(vid)" button="true" detail="true">
+      <ion-icon name="videocam-outline" slot="start" size="large"></ion-icon>
+      <ion-label>
+        <h3>{{ vid.titulo }}</h3>
+        <p>{{ vid.descripcion }}</p>
+        <p style="font-size: 0.8em; color: var(--ion-color-primary);">Toca para ver video</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

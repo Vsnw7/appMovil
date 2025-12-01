@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-title>Historia</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrar()">
+        <ion-icon name="close-circle-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  
+  <div class="modal-img-container" *ngIf="imagen">
+    <img [src]="imagen" alt="Concept Art">
+  </div>
+
+  <h1 class="titulo-modal">{{ titulo }}</h1>
+
+  <div class="texto-historia">
+    <p>{{ contenido }}</p>
+  </div>
+
+  <ion-button expand="block" fill="outline" (click)="cerrar()" class="ion-margin-top">
+    Volver
+  </ion-button>
+</ion-content>

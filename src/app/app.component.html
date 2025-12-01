@@ -1,0 +1,74 @@
+<ion-app>
+  <ion-menu side="start" menuId="first" contentId="main">
+    
+    <ion-header *ngIf="user">
+      <ion-toolbar color="primary" routerLink="/mi-cuenta" routerDirection="forward">
+        <ion-item lines="none" color="primary" detail="true" button>
+          <ion-avatar slot="start">
+            <img [src]="user.photoURL || 'assets/avatar-placeholder.png'" alt="avatar">
+          </ion-avatar>
+          <ion-label>
+            <h2>Mi Cuenta</h2>
+            <p style="font-size: 0.8em; opacity: 0.8;">{{ user.email }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-header *ngIf="!user">
+      <ion-toolbar color="primary">
+        <ion-title>Bienvenido</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="ion-padding">
+      <ion-list>
+        <ion-menu-toggle auto-hide="false">
+          
+          <ion-item routerLink="/mi-cuenta" routerDirection="root" *ngIf="user">
+            <ion-icon name="person-circle-outline" slot="start"></ion-icon>
+            <ion-label>Editar Perfil</ion-label>
+          </ion-item>
+
+          <ion-item routerLink="/inicio" routerDirection="root">
+            <ion-icon name="home-outline" slot="start"></ion-icon>
+            <ion-label>Inicio</ion-label>
+          </ion-item>
+          
+          <ion-item routerLink="/galeria" routerDirection="root">
+            <ion-icon name="images-outline" slot="start"></ion-icon>
+            <ion-label>Galería</ion-label>
+          </ion-item>
+          
+          <ion-item routerLink="/noticias" routerDirection="root">
+            <ion-icon name="newspaper-outline" slot="start"></ion-icon>
+            <ion-label>Noticias</ion-label>
+          </ion-item>
+          
+          <ion-item routerLink="/foro" routerDirection="root">
+            <ion-icon name="chatbubbles-outline" slot="start"></ion-icon>
+            <ion-label>Foro</ion-label>
+          </ion-item>
+          
+          <ion-item routerLink="/nosotros" routerDirection="root">
+            <ion-icon name="people-outline" slot="start"></ion-icon>
+            <ion-label>Nosotros</ion-label>
+          </ion-item>
+
+          <ion-item button (click)="logout()" lines="none" style="margin-top: 20px; border-top: 1px solid #ccc;" *ngIf="user">
+            <ion-icon name="log-out-outline" slot="start" color="danger"></ion-icon>
+            <ion-label color="danger">Cerrar Sesión</ion-label>
+          </ion-item>
+
+          <ion-item routerLink="/login" lines="none" style="margin-top: 20px; border-top: 1px solid #ccc;" *ngIf="!user">
+            <ion-icon name="log-in-outline" slot="start" color="primary"></ion-icon>
+            <ion-label color="primary">Iniciar Sesión</ion-label>
+          </ion-item>
+
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <ion-router-outlet id="main"></ion-router-outlet>
+</ion-app>
