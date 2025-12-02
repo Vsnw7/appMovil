@@ -3,7 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { InicioService } from '../../services/inicio.service';
 import { Usuarios } from 'src/app/services/usuarios';
-import { ForoService } from '../../services/foro'; // Importar ForoService
+import { ForoService } from '../../services/foro'; 
 import { NotificacionesComponent } from 'src/app/componentes/notificaciones/notificaciones.component';
 import { HeroContent, HistoriaContent } from '../../interfaces/inicio.interface';
 

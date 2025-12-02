@@ -9,7 +9,6 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    // Si ya está logueado, podrías hacer un "PublicGuard", pero por ahora dejémoslo así
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {

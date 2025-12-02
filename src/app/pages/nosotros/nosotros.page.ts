@@ -15,11 +15,11 @@ export class NosotrosPage implements OnInit {
 
   // DATOS ESTRUCTURADOS
   info = {
-    empresa: "Umbra Nexus",
+    empresa: "Umbra Nexus ©",
     juego: {
       titulo: "La Maldición de la Catedral",
       resumen: "Un viaje sobrenatural entre el Morelia colonial y el antiguo Guayangareo.",
-      imagen: "assets/shapes.svg", // Cambia esto por una imagen real de tu juego
+      imagen: "assets/img/logo-game.png", 
       historiaCompleta: "El juego se ambienta en la ciudad de Morelia, Michoacán, trasladando al jugador a un viaje entre dos tiempos: el Morelia colonial y el antiguo Guayangareo purépecha. La historia inicia cuando un joven moreliano es atraído por un cántico en la Catedral y, al descubrir un altar oculto, recibe una maldición que lo transporta al pasado. Allí deberá sobrevivir, explorar aldeas purépechas, enfrentarse a los Chichimecas oscuros y tomar decisiones que marcarán el destino del mundo."
     },
     app: {
@@ -65,5 +65,12 @@ export class NosotrosPage implements OnInit {
     });
     await modal.present();
   }
+
+
+  abrirWeb() {
+  window.open('https://umbranexus.pythonanywhere.com/', '_system'); 
+}
+
+
 
 }

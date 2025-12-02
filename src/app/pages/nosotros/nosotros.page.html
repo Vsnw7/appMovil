@@ -9,35 +9,48 @@
 
 <ion-content [fullscreen]="true" class="bg-gradient">
 
+  <!-- SECCIÓN HERO -->
   <div class="hero-section ion-text-center ion-padding">
+    <img src="assets/img/logo.webp" alt="Umbra Nexus Logo" class="logo-gamer"/>
     <h1 class="main-title">{{ info.empresa }}</h1>
-    <p class="subtitle">Desarrolladores de experiencias inmersivas</p>
+    <p class="subtitle">Innovación, tecnología y experiencias inmersivas</p>
   </div>
 
-  <ion-card class="game-card">
-    <img [src]="info.juego.imagen" />
+
+  <!-- SECCIÓN DE EMPRESA -->
+   
+  <ion-card class="hero-section ion-text-center ion-padding">
     <ion-card-header>
-      <ion-card-subtitle>PROYECTO PRINCIPAL</ion-card-subtitle>
-      <ion-card-title>{{ info.juego.titulo }}</ion-card-title>
+      <ion-card-title class="main-title">¿Quiénes Somos?</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <p>{{ info.juego.resumen }}</p>
-      <ion-button expand="block" color="tertiary" class="ion-margin-top" (click)="verHistoria()">
-        <ion-icon name="book-outline" slot="start"></ion-icon>
-        Leer Historia Completa
-      </ion-button>
+      <p class="subtitle">
+        En <strong>Umbra Nexus</strong> nos dedicamos al desarrollo de aplicaciones,
+        videojuegos y experiencias digitales que combinan creatividad, narrativa y tecnología avanzada.
+      </p>
+      <p class="subtitle">
+        Nuestro objetivo es crear herramientas y mundos que conecten con las personas,
+        impulsando la imaginación y facilitando soluciones tecnológicas para proyectos personales,
+        empresariales y educativos.
+      </p>
     </ion-card-content>
   </ion-card>
+  
 
-  <div class="app-section ion-padding">
-    <h2 class="section-title">Umbra Nexus App</h2>
-    <p class="section-desc">{{ info.app.objetivo }}</p>
+  <!-- PROYECTOS SECUNDARIOS / APP -->
+  <div class="hero-section ion-text-center ion-padding">
+    <h2 class="section-title">Nuestros Proyectos</h2>
+    <p class="section-desc">
+      En Umbra Nexus desarrollamos herramientas digitales, aplicaciones, sistemas web
+      y experiencias interactivas creadas para facilitar procesos y ofrecer valor real
+      a nuestros usuarios.
+    </p>
 
     <ion-grid>
       <ion-row>
         <ion-col size="6" *ngFor="let ben of info.app.beneficios">
           <div class="benefit-box">
-            <ion-icon [name]="ben.icono" color="secondary"></ion-icon>
+            <ion-icon [name]="ben.icono"></ion-icon>
             <h3>{{ ben.titulo }}</h3>
             <p>{{ ben.desc }}</p>
           </div>
@@ -45,5 +58,43 @@
       </ion-row>
     </ion-grid>
   </div>
+
+
+  <!-- PROYECTO PRINCIPAL (VIDEOJUEGO) -->
+  <ion-card class="game-card">
+    <img [src]="info.juego.imagen" />
+    <ion-card-header>
+      <ion-card-subtitle>PROYECTO PRINCIPAL - VIDEOJUEGO</ion-card-subtitle>
+      <ion-card-title>{{ info.juego.titulo }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{ info.juego.resumen }}</p>
+
+      <ion-button expand="block" (click)="verHistoria()">
+        <ion-icon name="book-outline" slot="start"></ion-icon>
+        Leer Historia Completa
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+
+  <!-- SECCIÓN ENLACE A SITIO WEB -->
+  <ion-card class="game-card">
+    <ion-card-header>
+      <ion-card-subtitle>PÁGINA WEB</ion-card-subtitle>
+      <ion-card-title>Conoce más sobre nuestro trabajo</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>
+        También contamos con un sitio web donde podrás explorar más información,
+        nuevos proyectos, noticias y contenido de Umbra Nexus.
+      </p>
+
+      <ion-button expand="block" (click)="abrirWeb()">
+        <ion-icon name="link-outline" slot="start"></ion-icon>
+        Visitar Nuestro Sitio Web
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

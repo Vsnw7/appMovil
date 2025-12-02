@@ -1,21 +1,28 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/login"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Crear Cuenta</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="registro-container">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">Crear Cuenta</ion-card-title>
+      </ion-card-header>
 
-<ion-content class="ion-padding">
-  <ion-item>
-    <ion-label position="floating">Correo</ion-label>
-    <ion-input type="email" [(ngModel)]="email"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Contraseña</ion-label>
-    <ion-input type="password" [(ngModel)]="password"></ion-input>
-  </ion-item>
-  <br>
-  <ion-button expand="block" (click)="registrar()">Registrarse</ion-button>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Correo</ion-label>
+          <ion-input type="email" [(ngModel)]="email"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input type="password" [(ngModel)]="password"></ion-input>
+        </ion-item>
+
+        <br>
+        <ion-button expand="block" (click)="registrar()">Registrarse</ion-button>
+
+        <p class="ion-text-center ion-margin-top">
+          ¿Ya tienes cuenta? <a [routerLink]="['/login']">Inicia sesión aquí</a>
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

@@ -1,0 +1,76 @@
+/* ================================
+   DETALLE HISTORIA - ESTILO GAMER
+   ================================ */
+
+ion-header ion-toolbar ion-button {
+  --background: linear-gradient(135deg, #8B2FC9 0%, #B537F2 50%, #E439FF 100%);
+  --color: #FFFFFF;
+  box-shadow: 
+    0 0 20px rgba(181, 55, 242, 0.6),
+    0 4px 16px rgba(0, 0, 0, 0.5);
+  border-bottom: 2px solid var(--neon-pink);
+}
+
+ion-header ion-button {
+  --color: white;
+  filter: drop-shadow(0 0 8px var(--neon-pink));
+}
+
+/* Fondo */
+ion-content {
+  --background: #0A0015;
+  background-image:
+    linear-gradient(rgba(181, 55, 242, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(181, 55, 242, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Imagen */
+.modal-img-container {
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 25px rgba(181, 55, 242, 0.4);
+
+  img {
+    width: 100%;
+    display: block;
+  }
+}
+
+/* Título */
+.titulo-modal {
+  color: var(--neon-purple);
+  font-weight: 800;
+  font-size: 1.6rem;
+  text-align: center;
+  text-shadow:
+    0 0 10px rgba(181, 55, 242, 0.6),
+    0 0 20px rgba(228, 57, 255, 0.4);
+  margin-bottom: 18px;
+}
+
+/* Texto */
+.texto-historia p {
+  color: var(--text-glow);
+  font-size: 1rem;
+  line-height: 1.7;
+  text-shadow: 0 0 6px rgba(181, 55, 242, 0.3);
+}
+
+/* Botón */
+ion-button {
+  --border-color: var(--neon-purple);
+  --color: var(--neon-purple);
+  border-radius: 25px;
+  font-weight: 700;
+  text-transform: uppercase;
+  --box-shadow: 0 4px 12px rgba(181, 55, 242, 0.3);
+
+  &:hover {
+    --color: var(--electric-blue);
+    transform: translateY(-2px);
+    --box-shadow: 0 6px 20px rgba(0, 217, 255, 0.5);
+  }
+}

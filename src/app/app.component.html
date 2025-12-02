@@ -2,13 +2,13 @@
   <ion-menu side="start" menuId="first" contentId="main">
     
     <ion-header *ngIf="user">
-      <ion-toolbar color="primary" routerLink="/mi-cuenta" routerDirection="forward">
-        <ion-item lines="none" color="primary" detail="true" button>
+      <ion-toolbar routerLink="/mi-cuenta" routerDirection="forward">
+        <ion-item lines="none" detail="true" button>
           <ion-avatar slot="start">
             <img [src]="user.photoURL || 'assets/avatar-placeholder.png'" alt="avatar">
           </ion-avatar>
           <ion-label>
-            <h2>Mi Cuenta</h2>
+            <h2>La Maldición de la Catedral</h2>
             <p style="font-size: 0.8em; opacity: 0.8;">{{ user.email }}</p>
           </ion-label>
         </ion-item>
@@ -16,7 +16,7 @@
     </ion-header>
 
     <ion-header *ngIf="!user">
-      <ion-toolbar color="primary">
+      <ion-toolbar>
         <ion-title>Bienvenido</ion-title>
       </ion-toolbar>
     </ion-header>
@@ -24,6 +24,9 @@
     <ion-content class="ion-padding">
       <ion-list>
         <ion-menu-toggle auto-hide="false">
+
+          <img src="assets/img/logo.webp" alt="Umbra Nexus Logo" class="logo-gamer"/>
+
           
           <ion-item routerLink="/mi-cuenta" routerDirection="root" *ngIf="user">
             <ion-icon name="person-circle-outline" slot="start"></ion-icon>

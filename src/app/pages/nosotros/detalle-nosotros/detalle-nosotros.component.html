@@ -1,10 +1,8 @@
 <ion-header>
-  <ion-toolbar color="tertiary">
+  <ion-toolbar>
     <ion-title>Historia</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="cerrar()">
-        <ion-icon name="close-circle-outline" slot="icon-only"></ion-icon>
-      </ion-button>
+      <ion-button (click)="cerrar()">Cerrar</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -21,7 +19,4 @@
     <p>{{ contenido }}</p>
   </div>
 
-  <ion-button expand="block" fill="outline" (click)="cerrar()" class="ion-margin-top">
-    Volver
-  </ion-button>
 </ion-content>

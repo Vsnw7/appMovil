@@ -6,7 +6,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding">
+<ion-content [fullscreen]="true" class="bg-light">
 
   <ion-list>
     <ion-card *ngFor="let n of noticias" (click)="verDetalle(n)" button="true">
@@ -24,7 +24,7 @@
 
       <ion-card-content>
         <p>{{ n.contenido | slice:0:100 }}...</p> 
-        <ion-text color="primary" style="float: right; margin-top: 10px;">
+        <ion-text>
             <strong>Leer más</strong>
         </ion-text>
       </ion-card-content>

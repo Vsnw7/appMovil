@@ -1,91 +1,268 @@
-// Contenedor superior con la foto grande
-.perfil-header {
-  margin-bottom: 25px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* === MI CUENTA PAGE - ESTILO GAMER === */
+:root {
+  --neon-purple: #B537F2;
+  --neon-pink: #E439FF;
+  --electric-blue: #00D9FF;
+  --cyber-purple: #8B2FC9;
+  --dark-bg: #0A0015;
+  --card-bg: #1A0F2E;
+  --card-hover: #2D1B4E;
+  --text-bright: #FFFFFF;
+  --text-glow: #E0D4FF;
+  --border-neon: rgba(181, 55, 242, 0.5);
+}
+/* Header con estilo cyberpunk */
+ion-header ion-toolbar {
+  --background: linear-gradient(135deg, #8B2FC9 0%, #B537F2 50%, #E439FF 100%);
+  --color: #FFFFFF;
+  box-shadow: 
+    0 0 20px rgba(181, 55, 242, 0.6),
+    0 4px 16px rgba(0, 0, 0, 0.5);
+  border-bottom: 2px solid var(--neon-pink);
+}
 
+ion-title {
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 1rem;
+  text-shadow: 
+    0 0 10px rgba(228, 57, 255, 0.8),
+    0 0 20px rgba(181, 55, 242, 0.5);
+}
+
+ion-menu-button {
+  --color: #FFFFFF;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+}
+
+ion-content {
+  --background: linear-gradient(135deg, #0f0221 0%, #1a0933 50%, #2d1654 100%);
+}
+
+
+/* Perfil Header */
+.perfil-header {
+  padding: 30px 0;
+  margin-bottom: 20px;
+  
   .avatar-gigante {
-    width: 120px;
-    height: 120px;
-    margin-bottom: 15px;
-    border: 4px solid var(--ion-color-primary);
-    background: #f4f5f8;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 20px;
+    border: 5px solid #a985ff;
+    box-shadow: 0 0 30px rgba(169, 133, 255, 0.6),
+                inset 0 0 20px rgba(169, 133, 255, 0.2);
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 40px rgba(169, 133, 255, 0.8),
+                  inset 0 0 25px rgba(169, 133, 255, 0.3);
+    }
     
     img {
-      padding: 5px; /* Un pequeño espacio interno */
+      object-fit: cover;
     }
   }
-
+  
   h2 {
-    margin: 0;
+    color: #fff;
+    font-size: 1.8rem;
     font-weight: 700;
-    color: var(--ion-color-dark);
+    margin: 15px 0 5px 0;
+    text-shadow: 0 2px 10px rgba(169, 133, 255, 0.5);
+    letter-spacing: 1px;
   }
-
+  
   .email-text {
-    margin: 5px 0 0;
-    color: var(--ion-color-medium);
-    font-size: 0.9rem;
+    color: #b8a5d6;
+    font-size: 0.95rem;
+    margin: 0;
+    opacity: 0.9;
   }
 }
 
-// Caja del buscador
+/* Card Principal */
+ion-card {
+  background: linear-gradient(135deg, rgba(45, 22, 84, 0.7) 0%, rgba(26, 9, 51, 0.9) 100%);
+  border-radius: 20px;
+  border: 1px solid rgba(169, 133, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  
+  ion-card-header {
+    background: linear-gradient(90deg, rgba(106, 44, 158, 0.4) 0%, rgba(139, 59, 199, 0.4) 100%);
+    border-bottom: 2px solid rgba(169, 133, 255, 0.2);
+    
+    ion-card-subtitle {
+      color: #a985ff;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 5px;
+    }
+    
+    ion-card-title {
+      color: #fff;
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+  }
+  
+  ion-card-content {
+    padding: 25px 20px;
+  }
+}
+
+/* Input */
+ion-item {
+  --background: rgba(15, 2, 33, 0.6);
+  --color: #fff;
+  --border-color: rgba(169, 133, 255, 0.3);
+  --border-width: 2px;
+  --border-radius: 12px;
+  --highlight-color-focused: #a985ff;
+  margin-bottom: 15px;
+  
+  ion-label {
+    color: #b8a5d6 !important;
+    font-weight: 500;
+  }
+  
+  ion-input {
+    --color: #fff;
+    --placeholder-color: #7a6b93;
+    font-weight: 500;
+  }
+  
+  &.item-has-focus {
+    --border-color: #a985ff;
+    box-shadow: 0 0 15px rgba(169, 133, 255, 0.3);
+  }
+}
+
+/* Buscador Avatar */
 .buscador-avatar {
-  background: var(--ion-color-light);
-  padding: 15px;
-  border-radius: 12px;
-  margin-bottom: 20px;
-
+  margin: 20px 0;
+  
   p {
-    margin: 0 0 10px 5px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--ion-color-medium);
+    color: #e0d4f7;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    font-weight: 500;
   }
-
+  
   ion-searchbar {
+    --background: rgba(15, 2, 33, 0.6);
+    --color: #fff;
+    --placeholder-color: #7a6b93;
+    --icon-color: #a985ff;
+    --border-radius: 15px;
+    --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(169, 133, 255, 0.3);
     padding: 0;
-    --box-shadow: none;
-    --background: #fff;
-    border-radius: 8px;
+    
+    &:hover {
+      border-color: rgba(169, 133, 255, 0.5);
+    }
   }
 }
 
-// Grilla de avatares pequeños
+/* Grid de Avatares */
 .grid-avatares {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 12px;
-  margin-top: 10px;
-
+  margin: 20px 0;
+  
   .avatar-item {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
+    aspect-ratio: 1;
+    border-radius: 12px;
     overflow: hidden;
     cursor: pointer;
-    background: #f0f0f0;
-    border: 3px solid transparent; /* Borde invisible por defecto */
-    transition: all 0.2s ease;
-
+    border: 3px solid rgba(169, 133, 255, 0.2);
+    transition: all 0.3s ease;
+    background: rgba(15, 2, 33, 0.4);
+    
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform 0.3s ease;
     }
-
-    &:active {
-      transform: scale(0.9);
+    
+    &:hover {
+      border-color: rgba(169, 133, 255, 0.5);
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(169, 133, 255, 0.4);
+      
+      img {
+        transform: scale(1.1);
+      }
     }
-
-    // Clase que se activa cuando seleccionas uno
+    
     &.seleccionado {
-      border-color: var(--ion-color-secondary);
-      box-shadow: 0 0 0 2px rgba(var(--ion-color-secondary-rgb), 0.3);
-      transform: scale(1.1);
+      border-color: #a985ff;
+      border-width: 4px;
+      box-shadow: 0 0 25px rgba(169, 133, 255, 0.7),
+                  inset 0 0 20px rgba(169, 133, 255, 0.2);
+      
+      &::after {
+        content: '✓';
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background: #a985ff;
+        color: #0f0221;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.1rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      }
     }
+  }
+}
+
+/* Botón Guardar */
+ion-button {
+  --background: linear-gradient(90deg, #a985ff 0%, #8b3bc7 100%);
+  --box-shadow: 0 6px 20px rgba(169, 133, 255, 0.5);
+  --border-radius: 15px;
+  height: 50px;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    --background: linear-gradient(90deg, #b89aff 0%, #9c4bd8 100%);
+    transform: translateY(-2px);
+    --box-shadow: 0 8px 25px rgba(169, 133, 255, 0.7);
+  }
+  
+  ion-icon {
+    font-size: 1.3rem;
+  }
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .grid-avatares {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  
+  .perfil-header .avatar-gigante {
+    width: 120px;
+    height: 120px;
   }
 }

@@ -1,10 +1,10 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color="light">
+  <ion-toolbar>
     
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-menu-button aria-label="Abrir Menu" menu="first"></ion-menu-button>
     </ion-buttons>
-    
+   
     <ion-buttons slot="start">
       <ion-button (click)="abrirNotificaciones()">
         <ion-icon name="notifications-outline" style="font-size: 1.5rem;"></ion-icon>
@@ -20,7 +20,7 @@
 
     <ion-buttons slot="end">
       <ion-button routerLink="/mi-cuenta">
-        <ion-icon name="person-circle-outline" style="font-size: 1.8rem; color: #a985ff;"></ion-icon>
+        <ion-icon name="person-circle-outline" style="font-size: 1.8rem;"></ion-icon>
       </ion-button>
     </ion-buttons>
 
@@ -35,7 +35,7 @@
   </ion-header>
 
   <div *ngIf="(hero$ | async) === null" style="text-align: center; margin-top: 50px;">
-    <ion-spinner name="crescent" color="primary"></ion-spinner>
+    <ion-spinner name="crescent"></ion-spinner>
     <p>Cargando...</p>
   </div>
 
