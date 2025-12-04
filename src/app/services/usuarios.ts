@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-// CAMBIO 1: Importamos las herramientas de la versión MODULAR (la que sí funciona en tu app)
 import { Firestore, doc, setDoc } from '@angular/fire/firestore'; 
 import firebase from 'firebase/compat/app';
+import { Platform } from '@ionic/angular'; // <--- Importamos Platform
 
 @Injectable({
   providedIn: 'root'
@@ -11,18 +11,28 @@ export class Usuarios {
 
   constructor(
     private afAuth: AngularFireAuth,
-    private firestore: Firestore // CAMBIO 2: Inyectamos 'Firestore' moderno en lugar de AngularFirestore
+    private firestore: Firestore,
+    private platform: Platform // <--- Inyectamos Platform
   ) { }
 
-  // --- MÉTODOS DE LOGIN (Se quedan igual con Compat para no romper el Login) ---
+  // --- LOGIN CON EMAIL ---
   autenticar(email: string, pass: string) {
     return this.afAuth.signInWithEmailAndPassword(email, pass);
   }
 
-  loginGoogle() {
-    return this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  // --- LOGIN CON GOOGLE (MODIFICADO) ---
+  async loginGoogle() {
+    // Verificamos si la app corre en un dispositivo nativo (Android/iOS)
+    if (this.platform.is('capacitor')) {
+      // En celular usamos redirección para evitar bloqueos de seguridad
+      return this.afAuth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
+    } else {
+      // En Web/PC usamos Popup que es más cómodo
+      return this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    }
   }
 
+  // --- REGISTRO ---
   registrar(email: string, pass: string) {
     return this.afAuth.createUserWithEmailAndPassword(email, pass);
   }
@@ -39,7 +49,7 @@ export class Usuarios {
     return this.afAuth.currentUser;
   }
 
-  // --- ACTUALIZAR PERFIL (ACTUALIZADO A MODULAR) ---
+  // --- GUARDAR PERFIL (LÓGICA EXISTENTE) ---
   async guardarPerfil(nombre: string, urlFoto: string) {
     const user = await this.afAuth.currentUser;
     
@@ -48,14 +58,13 @@ export class Usuarios {
     }
 
     try {
-      // 1. Actualizar Auth (Visual - Nombre y foto en el menú)
+      // 1. Actualizar Auth (Visual)
       await user.updateProfile({
         displayName: nombre,
         photoURL: urlFoto
       });
 
-      // 2. Guardar en Base de Datos (Usando versión Modular)
-      // Referencia al documento: colección 'users', id del usuario
+      // 2. Guardar en Firestore
       const userDocRef = doc(this.firestore, 'users', user.uid);
 
       const datosUsuario = {
@@ -63,12 +72,9 @@ export class Usuarios {
         displayName: nombre,
         photoURL: urlFoto,
         email: user.email,
-        fechaActualizacion: new Date().toISOString() // Usamos ISOString para evitar errores de formato
+        fechaActualizacion: new Date().toISOString()
       };
 
-      console.log('Guardando en Firestore Modular:', datosUsuario);
-
-      // setDoc con { merge: true } actualiza sin borrar lo que ya exista
       return setDoc(userDocRef, datosUsuario, { merge: true });
       
     } catch (error) {
