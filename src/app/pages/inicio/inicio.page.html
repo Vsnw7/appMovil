@@ -51,30 +51,51 @@
       <div class="hero-content">
         <h1>{{ hero.title }}</h1>
         <p>{{ hero.subtitle }}</p>
-        <ion-button routerLink="/noticias" class="btn-jugar">
+        <ion-button routerLink="/nosotros" class="btn-jugar">
           <ion-icon name="play-circle-outline" slot="start"></ion-icon>
           {{ hero.buttonLabel }}
         </ion-button>
       </div>
     </div>
+
+    <div class="texto">
+      <h1>PERSONAJES</h1>
+    </div>
   </ng-container>
 
+  
 <ng-container *ngIf="historia$ | async as historias">
     <div class="historia-container">
-      
-      <div class="historia-card" *ngFor="let historia of historias">
-        
-        <div class="img-wrapper" *ngIf="historia.imageUrl">
-          <img [src]="historia.imageUrl" alt="Historia Img" loading="lazy" />
+
+      <!-- CARDS DE PERSONAJES -->
+      <div class="historia-card personaje-card" *ngFor="let historia of historias">
+
+        <!-- Imagen del personaje -->
+         <div class="personaje-img-wrapper" *ngIf="historia.imageUrl">
+          <img [src]="historia.imageUrl" alt="{{ historia.nombre }}" loading="lazy" />
+
+          <div class="stats-overlay" *ngIf="historia.stats">
+            <div class="stat-item">
+              <span class="stat-label">DAÑO</span>
+              <span class="stat-value">{{ historia.stats.dano }}</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">VIDA</span>
+              <span class="stat-value">{{ historia.stats.vida }}</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">ARMA</span>
+              <span class="stat-value">{{ historia.stats.arma }}</span>
+            </div>
+          </div>
         </div>
 
-        <div class="content-wrapper">
-          <h2>{{ historia.title }}</h2>
-          <div class="historia-texto" [innerHTML]="historia.text"></div>
-        </div>
-
+        <!-- Información del personaje -->
+         <div class="personaje-content">
+          <h2 class="personaje-nombre">{{ historia.nombre }}</h2>
+          <p class="personaje-descripcion">{{ historia.descripcion }}</p>
+         </div>  
       </div>
-
     </div>
   </ng-container>
 

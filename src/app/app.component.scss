@@ -154,7 +154,7 @@ ion-menu ion-item:hover::before {
 ion-menu ion-item:hover {
   --background: rgba(181, 55, 242, 0.15);
   border-color: var(--neon-purple);
-  transform: translateX(6px);
+  transform: translateX(0);
   box-shadow: 
     0 4px 20px rgba(181, 55, 242, 0.4),
     0 0 30px rgba(228, 57, 255, 0.2);

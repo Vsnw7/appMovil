@@ -8,7 +8,13 @@ export interface HeroContent {
 
 export interface HistoriaContent {
   id?: string;
-  title: string;
-  text: string;
-  imageUrl?: string;  // Opcional si quieres imagenes en la historia
+  nombre: string;
+  descripcion: string;
+  imageUrl?: string;  
+  stats: {
+    dano: number;
+    vida: number;
+    arma: string;
+  };
+
 }

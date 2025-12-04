@@ -4,7 +4,7 @@ import { AuthGuard } from '../../src/app/guards/auth-guard'; // Importa el Guard
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login', // Redirige a Login al abrir la app
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {

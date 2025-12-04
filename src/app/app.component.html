@@ -2,7 +2,7 @@
   <ion-menu side="start" menuId="first" contentId="main">
     
     <ion-header *ngIf="user">
-      <ion-toolbar routerLink="/mi-cuenta" routerDirection="forward">
+      <ion-toolbar>
         <ion-item lines="none" detail="true" button>
           <ion-avatar slot="start">
             <img [src]="user.photoURL || 'assets/avatar-placeholder.png'" alt="avatar">
