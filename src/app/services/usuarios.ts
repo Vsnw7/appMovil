@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Firestore, doc, setDoc } from '@angular/fire/firestore'; 
 import firebase from 'firebase/compat/app';
-import { Platform } from '@ionic/angular'; // <--- Importamos Platform
 
 @Injectable({
   providedIn: 'root'
@@ -12,24 +11,11 @@ export class Usuarios {
   constructor(
     private afAuth: AngularFireAuth,
     private firestore: Firestore,
-    private platform: Platform // <--- Inyectamos Platform
   ) { }
 
   // --- LOGIN CON EMAIL ---
   autenticar(email: string, pass: string) {
     return this.afAuth.signInWithEmailAndPassword(email, pass);
-  }
-
-  // --- LOGIN CON GOOGLE (MODIFICADO) ---
-  async loginGoogle() {
-    // Verificamos si la app corre en un dispositivo nativo (Android/iOS)
-    if (this.platform.is('capacitor')) {
-      // En celular usamos redirección para evitar bloqueos de seguridad
-      return this.afAuth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
-    } else {
-      // En Web/PC usamos Popup que es más cómodo
-      return this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-    }
   }
 
   // --- REGISTRO ---
@@ -75,6 +61,7 @@ export class Usuarios {
         fechaActualizacion: new Date().toISOString()
       };
 
+      console.log('Guardando en Firestore Modular:', datosUsuario);
       return setDoc(userDocRef, datosUsuario, { merge: true });
       
     } catch (error) {
