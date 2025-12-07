@@ -11,6 +11,9 @@ import { GaleriaImagen, GaleriaVideo } from 'src/app/interfaces/galeria.interfac
 export class DetalleGaleriaComponent implements OnInit {
 
   // Aceptamos uno u otro
+  // @Input() marca estas variables como "puertas de entrada".
+  // Permiten que el padre (GaleriaPage) le pase los datos a este componente hijo.
+  // Se inicializan en null por si acaso no se pasa alguno de los dos.
   @Input() imagen: GaleriaImagen | null = null;
   @Input() video: GaleriaVideo | null = null;
 
@@ -18,7 +21,9 @@ export class DetalleGaleriaComponent implements OnInit {
 
   ngOnInit() {}
 
+  // Función vinculada al botón de "Cerrar" o "X" en el HTML
   cerrarModal() {
+    // .dismiss() destruye el modal actual y regresa a la pantalla anterior
     this.modalController.dismiss();
   }
 }

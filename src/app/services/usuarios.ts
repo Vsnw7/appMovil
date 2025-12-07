@@ -13,29 +13,30 @@ export class Usuarios {
     private firestore: Firestore,
   ) { }
 
-  // --- LOGIN CON EMAIL ---
+  // Inicia sesión con email y contraseña usando Firebase Auth.
   autenticar(email: string, pass: string) {
     return this.afAuth.signInWithEmailAndPassword(email, pass);
   }
 
-  // --- REGISTRO ---
+  // Registra un nuevo usuario con email y contraseña.
   registrar(email: string, pass: string) {
     return this.afAuth.createUserWithEmailAndPassword(email, pass);
   }
-
+// Retorna un observable con el estado de autenticación (usuario logueado o null).
   getAuth() {
     return this.afAuth.authState;
   }
-
+// Cierra la sesión del usuario actual.
   logout() {
     return this.afAuth.signOut();
   }
-
+// Obtiene el usuario actualmente autenticado (promesa).
   getCurrentUser() {
     return this.afAuth.currentUser;
   }
 
-  // --- GUARDAR PERFIL (LÓGICA EXISTENTE) ---
+ // Actualiza el perfil del usuario logueado y guarda los datos en Firestore.
+// Actualiza nombre y foto en Auth y luego los almacena en la colección 'users'.
   async guardarPerfil(nombre: string, urlFoto: string) {
     const user = await this.afAuth.currentUser;
     
@@ -44,13 +45,13 @@ export class Usuarios {
     }
 
     try {
-      // 1. Actualizar Auth (Visual)
+      // 1. Actualiza la información visual del usuario en Firebase Auth.
       await user.updateProfile({
         displayName: nombre,
         photoURL: urlFoto
       });
 
-      // 2. Guardar en Firestore
+      // 2. Guarda los datos del usuario en Firestore con merge para no reemplazar todo.
       const userDocRef = doc(this.firestore, 'users', user.uid);
 
       const datosUsuario = {
