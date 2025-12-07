@@ -17,33 +17,37 @@ export class RegistroPage {
   constructor(
     private usuarios: Usuarios,
     private router: Router,
-    private alertController: AlertController // Inyectamos el controlador de alertas
+    private alertController: AlertController // Inyectamos el controlador para dar feedback visual (popups)
   ) { }
 
   async registrar() {
-    // Validación básica
+    // Validación local: Evitamos hacer peticiones al servidor si los datos están incompletos
     if (!this.email || !this.password) {
       this.mostrarAlerta('Error', 'Por favor llena todos los campos.');
       return;
     }
 
-    // Validación de longitud de contraseña (Firebase pide mínimo 6)
+    // Validación de seguridad: Firebase rechazará contraseñas cortas, así que avisamos antes
     if (this.password.length < 6) {
       this.mostrarAlerta('Contraseña débil', 'La contraseña debe tener al menos 6 caracteres.');
       return;
     }
 
+    // Llamada al servicio de registro
     this.usuarios.registrar(this.email, this.password)
       .then((res) => {
         console.log('Usuario creado exitosamente', res);
-        // Firebase loguea automáticamente, así que vamos directo a inicio
-        // 'replaceUrl: true' borra el historial para que no puedan volver al registro
+        // ÉXITO: Firebase loguea automáticamente al crear la cuenta.
+        // { replaceUrl: true } es CRUCIAL: Borra el historial de navegación.
+        // Así, si el usuario presiona "Atrás" en su celular, la app se cierra en lugar de volver al registro.
         this.router.navigate(['/inicio'], { replaceUrl: true });
       })
       .catch(async (err) => {
         console.error(err);
         
-        // Manejo de errores específicos de Firebase
+        // TRADUCCIÓN DE ERRORES:
+        // Firebase devuelve códigos técnicos (ej: 'auth/email-already-in-use').
+        // Aquí los interceptamos para mostrar mensajes amigables en español.
         let mensaje = 'No se pudo crear la cuenta.';
         if (err.code === 'auth/email-already-in-use') {
           mensaje = 'Este correo ya está registrado. Por favor inicia sesión.';
@@ -55,7 +59,7 @@ export class RegistroPage {
       });
   }
 
-  // Función auxiliar para mostrar alertas
+  // Función auxiliar (Helper) para no repetir el código de crear alertas en cada error
   async mostrarAlerta(header: string, message: string) {
     const alert = await this.alertController.create({
       header,

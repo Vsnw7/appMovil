@@ -10,13 +10,15 @@ export class GaleriaService {
 
   constructor(private firestore: Firestore) {}
 
-  // Leer imágenes
+ // Leer imágenes desde la colección 'galeria_imagenes' de Firestore.
+// Retorna un Observable que emite un arreglo de objetos GaleriaImagen.
   getImagenes(): Observable<GaleriaImagen[]> {
     const ref = collection(this.firestore, 'galeria_imagenes');
     return collectionData(ref, { idField: 'id' }) as Observable<GaleriaImagen[]>;
   }
 
-  // Leer videos
+ // Leer videos desde la colección 'videos' de Firestore.
+// Retorna un Observable que emite un arreglo de objetos GaleriaVideo.
   getVideos(): Observable<GaleriaVideo[]> {
     const ref = collection(this.firestore, 'videos');
     return collectionData(ref, { idField: 'id' }) as Observable<GaleriaVideo[]>;

@@ -2,18 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { IonicModule, ModalController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+// Importamos directamente el componente que usaremos en el modal
 import { DetalleNosotrosComponent } from './detalle-nosotros/detalle-nosotros.component';
 
 @Component({
-  standalone: true,
+  standalone: true, // <--- OJO: Componente Autónomo (Moderno)
   selector: 'app-nosotros',
   templateUrl: './nosotros.page.html',
   styleUrls: ['./nosotros.page.scss'],
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule] // Al ser standalone, sus importaciones van aquí directo, no en un module.ts
 })
 export class NosotrosPage implements OnInit {
 
   // DATOS ESTRUCTURADOS
+  // Objeto JSON local que alimenta la vista. 
+  // Centraliza los textos aquí para no ensuciar el HTML y facilitar cambios futuros.
   info = {
     empresa: "Umbra Nexus ©",
     juego: {
@@ -58,6 +61,8 @@ export class NosotrosPage implements OnInit {
     const modal = await this.modalCtrl.create({
       component: DetalleNosotrosComponent,
       componentProps: {
+        // Enviamos al modal solo los datos necesarios (titulo, texto largo e imagen)
+        // para reutilizar el componente de detalle de forma genérica.
         titulo: this.info.juego.titulo,
         contenido: this.info.juego.historiaCompleta,
         imagen: this.info.juego.imagen
@@ -66,11 +71,11 @@ export class NosotrosPage implements OnInit {
     await modal.present();
   }
 
-
   abrirWeb() {
-  window.open('https://umbranexus.pythonanywhere.com/', '_system'); 
-}
-
-
+    // '_system' es CRUCIAL en móviles:
+    // Obliga a que el enlace se abra en el navegador nativo (Chrome/Safari)
+    // y no dentro de la app (WebView), lo cual da mejor experiencia al usuario.
+    window.open('https://umbranexus.pythonanywhere.com/', '_system'); 
+  }
 
 }

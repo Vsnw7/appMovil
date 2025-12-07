@@ -10,7 +10,8 @@ export class NoticiasService {
 
   constructor(private firestore: Firestore) {}
 
-  // Leer colección de noticias
+  // Obtiene todos los documentos de la colección 'noticias'.
+// Retorna un Observable con un arreglo de objetos Noticia, incluyendo el campo 'id'.
   getNoticias(): Observable<Noticia[]> {
     const noticiasRef = collection(this.firestore, 'noticias'); // Nombre de tu colección
     return collectionData(noticiasRef, { idField: 'id' }) as Observable<Noticia[]>;
